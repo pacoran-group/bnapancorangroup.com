@@ -184,7 +184,7 @@ export type Episode = { no: number; title: string; synopsis: string; youtube: st
 
 export const lumiEpisodes: Episode[] = [
   { no: 1, title: 'Episode 1', synopsis: '', youtube: 'https://youtu.be/0mC2qfhavI8' },
-  { no: 2, title: 'Episode 2', synopsis: '', youtube: '' },
+  { no: 2, title: 'Episode 2', synopsis: '', youtube: 'https://youtu.be/tqLj_p-LRkQ' },
   { no: 3, title: 'Episode 3', synopsis: '', youtube: '' },
   { no: 4, title: 'Episode 4', synopsis: '', youtube: '' },
   { no: 5, title: 'Episode 5', synopsis: '', youtube: '' },
