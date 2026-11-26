@@ -13,13 +13,14 @@ const followUrl = lumi.playlistUrl || lumi.channelUrl;
 <Layout
   title={`Serial ${lumi.name}: Film Pendek ${total} Episode | Banyuwangi Nature Adventure`}
   description={`${lumi.intro} Tonton semua episodenya di sini.`}
-  image="/images/taman-ubur-ubur.webp"
+  image="/images/lumi.webp"
 >
   <!-- HERO -->
   <section class="relative min-h-[65svh] flex items-end overflow-hidden">
-    <div class="absolute inset-0">
-      <img src={img('taman-ubur-ubur')} alt="" class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
-      <div class="absolute inset-0 bg-gradient-to-t from-night via-night/70 to-night/30"></div>
+    <div class="absolute inset-0 lg:left-[38%]">
+      <img src={img('lumi')} alt={`${lumi.name}, maskot Banyuwangi Nature Adventure`} class="w-full h-full object-cover object-[50%_30%]" loading="eager" fetchpriority="high" width="1376" height="768" />
+      <div class="absolute inset-0 bg-gradient-to-t from-night via-night/60 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-night/80 via-night/20 to-transparent lg:from-night lg:via-night/10"></div>
     </div>
     <div class="relative container-main w-full pb-16 pt-36">
       <span class="chip">Serial YouTube · {total} Episode</span>

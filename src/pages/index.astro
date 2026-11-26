@@ -238,13 +238,16 @@ const jsonLd = [
   <!-- ============ SERIAL LUMI ============ -->
   <section id="lumi" class="section-padding scroll-mt-20 overflow-hidden">
     <div class="container-main">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div class="max-w-2xl">
-          <span class="eyebrow reveal">Serial YouTube</span>
-          <h2 class="mt-4 text-3xl md:text-5xl reveal reveal-delay-1">Petualangan <span class="glow-text">{lumi.name}</span></h2>
-          <p class="mt-4 text-white/75 reveal reveal-delay-2">{lumi.intro}</p>
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-cyan-500/10 reveal">
+          <img src={img('lumi')} alt={`${lumi.name}, maskot Banyuwangi Nature Adventure, berdiri di area waterpark`} class="w-full" loading="lazy" width="1376" height="768" />
         </div>
-        <a href="/lumi" class="btn-ghost shrink-0 reveal">Semua {lumiEpisodes.length} Episode →</a>
+        <div>
+          <span class="eyebrow reveal">Serial YouTube</span>
+          <h2 class="mt-4 text-3xl md:text-5xl reveal reveal-delay-1">Kenalan dengan <span class="glow-text">{lumi.name}</span></h2>
+          <p class="mt-4 text-white/75 reveal reveal-delay-2">{lumi.intro}</p>
+          <a href="/lumi" class="btn-ghost mt-8 reveal reveal-delay-3">Semua {lumiEpisodes.length} Episode →</a>
+        </div>
       </div>
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {lumiPreview.map((ep) => <EpisodeCard episode={ep} />)}
