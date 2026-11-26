@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { img } from '../data/bna';
+---
+
+<Layout title="Halaman tidak ditemukan | Banyuwangi Nature Adventure">
+  <section class="relative min-h-[100svh] flex items-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={img('taman-pohon')} alt="" class="w-full h-full object-cover opacity-40" />
+      <div class="absolute inset-0 bg-night/70"></div>
+    </div>
+    <div class="relative container-main text-center">
+      <p class="text-7xl md:text-9xl font-extrabold glow-text">404</p>
+      <h1 class="mt-4 text-2xl md:text-4xl">Sepertinya kamu tersesat di hutan cahaya</h1>
+      <p class="mt-4 text-white/70">Halaman yang kamu cari tidak ada atau sudah dipindahkan.</p>
+      <a href="/" class="btn-primary mt-10">Kembali ke Beranda</a>
+    </div>
+  </section>
+</Layout>

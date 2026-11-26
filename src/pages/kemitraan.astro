@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { waLinks, img, tenantFormats, tenantBenefits, tenantCriteria, timeline, marketStats } from '../data/bna';
+
+const segments = [
+  { time: 'Siang · 10.00–16.00', who: 'Keluarga modern', need: 'Minuman segar, camilan, dan makan siang keluarga.' },
+  { time: 'Sore & malam · 17.00–22.00', who: 'Gen Z & milenial', need: 'Makan malam, kopi premium, dan tempat nongkrong estetik.' },
+  { time: 'Malam & akhir pekan', who: 'Tamu acara', need: 'Katering pernikahan, gathering, dan acara komunitas.' },
+];
+---
+
+<Layout
+  title="Kemitraan Tenant F&B | Banyuwangi Nature Adventure, Genteng"
+  description="Buka usaha kuliner di Banyuwangi Nature Adventure, Genteng. Pilihan Anchor Tenant, Standard Kiosk, dan Pop-Up Booth dengan booth berdesain Osing siap pakai."
+  image="/images/koridor-kuliner.webp"
+>
+  <!-- HERO -->
+  <section class="relative min-h-[70svh] flex items-end overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={img('koridor-kuliner')} alt="Ilustrasi koridor kuliner bernuansa Osing di Banyuwangi Nature Adventure" class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+      <div class="absolute inset-0 bg-gradient-to-t from-night via-night/70 to-night/30"></div>
+    </div>
+    <div class="relative container-main w-full pb-16 pt-36">
+      <span class="chip">Pendaftaran tenant dibuka</span>
+      <h1 class="mt-6 text-4xl md:text-6xl lg:text-7xl font-extrabold max-w-4xl">Buka usaha kulinermu di <span class="glow-text">BNA</span></h1>
+      <p class="mt-6 text-lg md:text-xl text-white/80 max-w-2xl">
+        Koridor F&B gaya hidup di Genteng, ramai dari siang hingga malam, dengan booth berfasad Osing yang sudah disiapkan.
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row gap-4">
+        <a href={waLinks.tenant} target="_blank" rel="noopener noreferrer" data-wa="tenant-hero" class="btn-primary">Daftar Jadi Tenant</a>
+        <a href="#format" class="btn-ghost">Lihat Format Unit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASAR -->
+  <section class="section-padding">
+    <div class="container-main">
+      <div class="max-w-2xl">
+        <span class="eyebrow reveal">Kenapa Genteng?</span>
+        <h2 class="mt-4 text-3xl md:text-5xl reveal reveal-delay-1">Pasar yang sudah ada, menunggu tempat yang tepat</h2>
+        <p class="mt-6 text-white/75 reveal reveal-delay-2">
+          Genteng ditetapkan sebagai Pusat Kegiatan Lokal dalam RTRW Banyuwangi 2024–2044, kota kedua paling strategis
+          setelah Banyuwangi Kota. Selama ini pilihan rekreasi terbelah antara wisata alam yang minim fasilitas dan mal tertutup
+          tanpa suasana alam. BNA hadir di antaranya.
+        </p>
+      </div>
+      <div class="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {marketStats.map((s, i) => (
+          <div class={`card p-6 reveal reveal-delay-${(i % 3) + 1}`}>
+            <p class="text-3xl md:text-4xl font-extrabold glow-text">{s.value}</p>
+            <p class="mt-2 text-sm text-white/80">{s.label}</p>
+            <p class="mt-3 text-[11px] text-white/40">Sumber: {s.source}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SEGMEN -->
+  <section class="section-padding bg-night-2">
+    <div class="container-main">
+      <span class="eyebrow reveal">Siapa yang akan makan di tempat Anda?</span>
+      <h2 class="mt-4 text-3xl md:text-4xl reveal reveal-delay-1">Tiga gelombang pengunjung setiap hari</h2>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        {segments.map((s) => (
+          <div class="card p-8">
+            <p class="text-glow text-sm font-semibold">{s.time}</p>
+            <h3 class="mt-2 text-xl">{s.who}</h3>
+            <p class="mt-3 text-sm text-white/70">{s.need}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- KEUNTUNGAN -->
+  <section class="section-padding">
+    <div class="container-main grid lg:grid-cols-2 gap-12 items-center">
+      <div class="rounded-3xl overflow-hidden border border-white/10 reveal">
+        <img src={img('kuliner-interior')} alt="Ilustrasi interior area kuliner BNA" class="w-full" loading="lazy" width="1004" height="565" />
+      </div>
+      <div>
+        <span class="eyebrow reveal">Keuntungan tenant</span>
+        <h2 class="mt-4 text-3xl md:text-4xl reveal reveal-delay-1">Fokus pada rasa, sisanya kami siapkan</h2>
+        <ul class="mt-8 grid gap-6">
+          {tenantBenefits.map((b) => (
+            <li class="reveal">
+              <p class="font-semibold text-white">{b.title}</p>
+              <p class="mt-1 text-sm text-white/70">{b.desc}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMAT -->
+  <section id="format" class="section-padding bg-night-2 scroll-mt-20">
+    <div class="container-main">
+      <span class="eyebrow reveal">Format unit</span>
+      <h2 class="mt-4 text-3xl md:text-4xl reveal reveal-delay-1">Pilih yang sesuai skala usahamu</h2>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        {tenantFormats.map((f, i) => (
+          <div class="card p-8">
+            <span class="text-glow/80 text-sm">0{i + 1}</span>
+            <h3 class="mt-2 text-xl">{f.name}</h3>
+            <p class="mt-3 text-sm text-white/70">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-sm text-white/50">Harga sewa dan ukuran unit diinformasikan langsung oleh tim kami.</p>
+    </div>
+  </section>
+
+  <!-- KRITERIA & JADWAL -->
+  <section class="section-padding">
+    <div class="container-main grid lg:grid-cols-2 gap-12">
+      <div class="reveal">
+        <h2 class="text-2xl md:text-3xl">Kriteria mitra</h2>
+        <ul class="mt-6 grid gap-4">
+          {tenantCriteria.map((c) => (
+            <li class="flex gap-3 text-white/75"><span class="text-glow mt-0.5" aria-hidden="true">✓</span>{c}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <h2 class="text-2xl md:text-3xl">Jadwal</h2>
+        <ol class="mt-6 border-l border-glow/30 pl-6 grid gap-5">
+          {timeline.map((t) => (
+            <li class="relative">
+              <span class="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-glow shadow-[0_0_12px_#67e8f9]"></span>
+              <p class="text-glow-soft font-semibold">{t.when}</p>
+              <p class="text-white/75 text-sm">{t.what}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-night-2 border-t border-white/10">
+    <div class="container-main max-w-3xl text-center">
+      <h2 class="text-3xl md:text-5xl reveal">Amankan lokasimu <span class="glow-text">sekarang</span></h2>
+      <p class="mt-6 text-white/75 reveal reveal-delay-1">Slot tenant terbatas per zona. Lokasi strategis terisi lebih dulu seiring mendekatnya pembukaan.</p>
+      <a href={waLinks.tenant} target="_blank" rel="noopener noreferrer" data-wa="tenant-cta" class="btn-primary mt-10">Hubungi Tim Kemitraan</a>
+    </div>
+  </section>
+</Layout>

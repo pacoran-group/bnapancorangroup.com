@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { waLinks, img } from '../data/bna';
+
+const packages = [
+  {
+    title: 'Pernikahan & Lamaran',
+    desc: 'Resepsi taman di bawah cahaya, dengan latar instalasi lampu untuk foto yang tak terlupakan.',
+    image: img('jembatan-cahaya'),
+  },
+  {
+    title: 'Gathering & Acara Kantor',
+    desc: 'Family day, outing karyawan, atau malam apresiasi. Anak-anak bermain, orang dewasa bersantai.',
+    image: img('suasana-malam'),
+  },
+  {
+    title: 'Kegiatan Sekolah',
+    desc: 'Karyawisata, wisuda, atau perpisahan sekolah dengan area yang aman dan mudah diawasi.',
+    image: img('playland'),
+  },
+  {
+    title: 'Ulang Tahun & Komunitas',
+    desc: 'Perayaan keluarga, kopdar komunitas, hingga acara musik kecil di area Garden Party.',
+    image: img('taman-bunga'),
+  },
+];
+
+const included = [
+  'Area Garden Party dengan latar taman cahaya',
+  'Katering dari tenant kuliner BNA',
+  'Parkir terintegrasi untuk mobil dan bus',
+  'Akses wahana untuk tamu (sesuai paket)',
+  'Keamanan dan kebersihan kawasan',
+];
+---
+
+<Layout
+  title="Event & Venue: Pernikahan, Gathering, Acara Sekolah | Banyuwangi Nature Adventure"
+  description="Sewa venue Garden Party di Banyuwangi Nature Adventure, Genteng, untuk pernikahan, gathering kantor, kegiatan sekolah, dan acara komunitas dengan latar taman cahaya."
+  image="/images/venue-garden.webp"
+>
+  <section class="relative min-h-[70svh] flex items-end overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={img('taman-ubur-ubur')} alt="Ilustrasi taman ubur-ubur cahaya di BNA" class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+      <div class="absolute inset-0 bg-gradient-to-t from-night via-night/70 to-night/30"></div>
+    </div>
+    <div class="relative container-main w-full pb-16 pt-36">
+      <span class="chip">Event & Venue</span>
+      <h1 class="mt-6 text-4xl md:text-6xl lg:text-7xl font-extrabold max-w-4xl">Rayakan momenmu <span class="glow-text">di bawah cahaya</span></h1>
+      <p class="mt-6 text-lg md:text-xl text-white/80 max-w-2xl">
+        Venue outdoor dengan suasana yang tidak ada di tempat lain di Banyuwangi, lengkap dengan katering dan wahana untuk tamu.
+      </p>
+      <a href={waLinks.venue} target="_blank" rel="noopener noreferrer" data-wa="venue-hero" class="btn-primary mt-10">Tanya Ketersediaan Tanggal</a>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-main">
+      <span class="eyebrow reveal">Cocok untuk</span>
+      <h2 class="mt-4 text-3xl md:text-5xl reveal reveal-delay-1">Satu venue, banyak cerita</h2>
+      <div class="mt-10 grid md:grid-cols-2 gap-6">
+        {packages.map((p) => (
+          <article class="card">
+            <div class="aspect-[16/9] overflow-hidden">
+              <img src={p.image} alt={`Ilustrasi suasana untuk ${p.title.toLowerCase()}`} class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl">{p.title}</h3>
+              <p class="mt-2 text-sm text-white/70">{p.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-night-2">
+    <div class="container-main grid lg:grid-cols-2 gap-12 items-center">
+      <div class="rounded-3xl overflow-hidden border border-white/10 reveal">
+        <img src={img('venue-garden')} alt="Ilustrasi area Garden Party" class="w-full" loading="lazy" width="546" height="308" />
+      </div>
+      <div>
+        <span class="eyebrow reveal">Fasilitas</span>
+        <h2 class="mt-4 text-3xl md:text-4xl reveal reveal-delay-1">Yang Anda dapatkan</h2>
+        <ul class="mt-8 grid gap-4">
+          {included.map((i) => (
+            <li class="flex gap-3 text-white/80"><span class="text-glow" aria-hidden="true">✓</span>{i}</li>
+          ))}
+        </ul>
+        <p class="mt-6 text-sm text-white/50">Kapasitas, harga paket, dan ketersediaan tanggal diinformasikan langsung oleh tim kami.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-main max-w-3xl text-center">
+      <h2 class="text-3xl md:text-5xl reveal">Sudah punya tanggal?</h2>
+      <p class="mt-6 text-white/75 reveal reveal-delay-1">Ceritakan jenis acara, perkiraan jumlah tamu, dan tanggalnya. Tim kami akan menyiapkan penawaran.</p>
+      <a href={waLinks.venue} target="_blank" rel="noopener noreferrer" data-wa="venue-cta" class="btn-primary mt-10">Minta Penawaran via WhatsApp</a>
+    </div>
+  </section>
+</Layout>

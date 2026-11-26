@@ -1,0 +1,334 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {
+  site, waLinks, img, facts, hours, zonesDay, zonesNight, mapLegend, eventTypes, faqs,
+} from '../data/bna';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'TouristAttraction',
+    name: site.name,
+    alternateName: site.shortName,
+    description: site.description,
+    url: site.url,
+    image: new URL(img('hero'), site.url).href,
+    telephone: '+' + site.whatsapp,
+    address: { '@type': 'PostalAddress', addressLocality: 'Genteng', addressRegion: 'Jawa Timur', addressCountry: 'ID' },
+    isAccessibleForFree: false,
+    publicAccess: true,
+    touristType: ['Keluarga', 'Anak-anak', 'Anak muda'],
+    parentOrganization: { '@type': 'Organization', name: site.parent.name, url: site.parent.url },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+
+<Layout
+  title="Banyuwangi Nature Adventure: Wisata Siang & Malam di Genteng, Banyuwangi"
+  jsonLd={jsonLd}
+>
+  <!-- ============ HERO ============ -->
+  <section class="relative min-h-[100svh] flex items-end overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src={img('hero')}
+        alt="Ilustrasi suasana malam Banyuwangi Nature Adventure dengan taman cahaya dan latar pegunungan"
+        class="w-full h-full object-cover animate-slow-zoom"
+        loading="eager"
+        fetchpriority="high"
+        width="1600"
+        height="900"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-night via-night/60 to-night/30"></div>
+    </div>
+    <div class="relative z-10 container-main w-full pb-20 md:pb-28 pt-36">
+      <span class="chip">{site.status} · {site.location}</span>
+      <h1 class="mt-6 text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.03] max-w-5xl">
+        Banyuwangi <span class="glow-text">Nature Adventure</span>
+      </h1>
+      <p class="mt-6 text-lg md:text-2xl text-white/85 font-light max-w-2xl">
+        {site.tagline}. Taman rekreasi alam & gaya hidup di Genteng, dari Playland ber-AC dan waterpark di siang hari hingga taman cahaya saat malam.
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row gap-4">
+        <a href={waLinks.info} target="_blank" rel="noopener noreferrer" data-wa="hero" class="btn-primary">Info & Reservasi via WhatsApp</a>
+        <a href="#zona" class="btn-ghost">Jelajahi Zona</a>
+      </div>
+    </div>
+    <p class="absolute bottom-4 left-4 md:left-auto md:right-24 z-10 text-[10px] uppercase tracking-[0.2em] text-white/50">Ilustrasi konsep</p>
+  </section>
+
+  <!-- ============ FAKTA ============ -->
+  <section class="border-y border-white/10 bg-night-2">
+    <dl class="container-main grid grid-cols-2 md:grid-cols-5 gap-y-8 py-10">
+      {facts.map((f, i) => (
+        <div class:list={['text-center px-2', i === 0 && 'col-span-2 md:col-span-1']}>
+          <dt class="text-[11px] uppercase tracking-[0.2em] text-glow/80">{f.label}</dt>
+          <dd class="mt-2 text-xl md:text-2xl font-semibold text-white">{f.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <!-- ============ INTRO ============ -->
+  <section class="section-padding">
+    <div class="container-main grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div>
+        <span class="eyebrow reveal">Apa itu BNA?</span>
+        <h2 class="mt-4 text-3xl md:text-5xl reveal reveal-delay-1">
+          Petualangan alam bertemu <span class="glow-text">gaya hidup modern</span>
+        </h2>
+        <p class="mt-6 text-white/75 md:text-lg reveal reveal-delay-2">
+          Dulu dikenal sebagai Banyuwangi Night Amazing, kini kawasan ini bertransformasi menjadi
+          <strong class="text-white">Banyuwangi Nature Adventure</strong>: <em>Hybrid Eco-Lifestyle Park</em> yang
+          menyatukan keseruan luar ruang, instalasi cahaya, dan koridor kuliner dalam satu tempat.
+        </p>
+        <p class="mt-4 text-white/75 md:text-lg reveal reveal-delay-3">
+          Anak-anak bermain, orang tua bersantai di kafe, dan anak muda berburu spot foto, semuanya tanpa harus berpindah tempat.
+        </p>
+      </div>
+      <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-glow/10 aspect-[4/3] reveal reveal-delay-2">
+        <img src={img('aerial')} alt="Ilustrasi tampak atas kawasan Banyuwangi Nature Adventure di malam hari" class="w-full h-full object-cover object-[50%_45%]" loading="lazy" width="1000" height="1758" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ZONA SIANG / MALAM ============ -->
+  <section id="zona" class="section-padding bg-night-2 scroll-mt-20">
+    <div class="container-main">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="eyebrow reveal">Zona & Wahana</span>
+        <h2 class="mt-4 text-3xl md:text-5xl reveal reveal-delay-1">Dua suasana, satu tujuan</h2>
+        <p class="mt-4 text-white/70 reveal reveal-delay-2">Pilih waktunya, setiap sesi punya keseruannya sendiri.</p>
+      </div>
+
+      <div class="mt-10 flex justify-center">
+        <div class="inline-flex rounded-full p-1 bg-white/5 border border-white/10" role="tablist" aria-label="Pilih sesi kunjungan">
+          <button type="button" role="tab" id="tab-siang" aria-controls="panel-siang" aria-selected="true" data-session-tab="siang" class="session-tab">
+            ☀️ Siang · {hours[0].value.replace(/ /g, '')}
+          </button>
+          <button type="button" role="tab" id="tab-malam" aria-controls="panel-malam" aria-selected="false" data-session-tab="malam" class="session-tab" tabindex="-1">
+            🌙 Malam · {hours[1].value.replace(/ /g, '')}
+          </button>
+        </div>
+      </div>
+
+      <div id="panel-siang" role="tabpanel" aria-labelledby="tab-siang" data-session-panel="siang" class="mt-12">
+        <p class="text-center text-white/70 max-w-2xl mx-auto mb-10">Untuk keluarga: bermain di ruangan sejuk, berseluncur di waterpark, lalu makan siang bersama.</p>
+        <div class="grid md:grid-cols-3 gap-6">
+          {zonesDay.map((z) => (
+            <article class="card">
+              <div class:list={['aspect-[16/10] overflow-hidden', z.contain && 'bg-black']}>
+                <img src={z.image} alt={`Ilustrasi ${z.title}`} class:list={['w-full h-full', z.contain ? 'object-contain' : 'object-cover']} loading="lazy" />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl">{z.title}</h3>
+                <p class="mt-2 text-sm text-white/70">{z.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div id="panel-malam" role="tabpanel" aria-labelledby="tab-malam" data-session-panel="malam" class="mt-12" hidden>
+        <p class="text-center text-white/70 max-w-2xl mx-auto mb-10">Saat gelap tiba, BNA berubah menjadi hutan cahaya: Blue Fire Neon Forest, instalasi LED, dan tempat nongkrong yang estetik.</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {zonesNight.map((z) => (
+            <article class="card">
+              <div class="aspect-[16/10] overflow-hidden">
+                <img src={z.image} alt={`Ilustrasi ${z.title}`} class="w-full h-full object-cover" loading="lazy" />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl">{z.title}</h3>
+                <p class="mt-2 text-sm text-white/70">{z.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOROTAN KAWAH IJEN ============ -->
+  <section class="section-padding bg-black overflow-hidden">
+    <div class="container-main grid lg:grid-cols-2 gap-12 items-center">
+      <div class="order-2 lg:order-1">
+        <span class="eyebrow reveal">Wahana Unggulan</span>
+        <h2 class="mt-4 text-3xl md:text-5xl reveal reveal-delay-1">Kawah Ijen <span class="glow-text">Blue Fire</span> Waterpark</h2>
+        <p class="mt-2 text-glow-soft/80 italic reveal reveal-delay-1">The Mystic Crater Adventure</p>
+        <p class="mt-6 text-white/75 reveal reveal-delay-2">
+          Terinspirasi fenomena api biru Kawah Ijen yang mendunia, perosotan-perosotan air meliuk mengelilingi
+          "gunung berapi" dengan retakan lava biru menyala. Ikon baru yang membawa legenda Banyuwangi ke dalam wahana keluarga.
+        </p>
+      </div>
+      <div class="order-1 lg:order-2 grid grid-cols-5 gap-4 items-end reveal reveal-delay-2">
+        <img src={img('kawah-ijen-waterpark')} alt="Ilustrasi wahana Kawah Ijen Blue Fire Waterpark" class="col-span-5 w-full" loading="lazy" width="845" height="461" />
+        <img src={img('kolam-kawah-ijen')} alt="Ilustrasi kolam di area waterpark" class="col-span-3 col-start-3 rounded-2xl border border-white/10 -mt-16 relative" loading="lazy" width="506" height="338" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PETA ============ -->
+  <section id="peta" class="section-padding scroll-mt-20">
+    <div class="container-main grid lg:grid-cols-5 gap-12 items-center">
+      <div class="lg:col-span-3 rounded-3xl overflow-hidden border border-white/10 reveal">
+        <img src={img('denah')} alt="Denah area Banyuwangi Nature Adventure" class="w-full" loading="lazy" width="717" height="717" />
+      </div>
+      <div class="lg:col-span-2">
+        <span class="eyebrow reveal">Peta Area</span>
+        <h2 class="mt-4 text-3xl md:text-4xl reveal reveal-delay-1">Rencanakan rute jelajahmu</h2>
+        <ol class="mt-8 grid gap-3 reveal reveal-delay-2">
+          {mapLegend.map((item, i) => (
+            <li class="flex items-center gap-4 text-white/80"><span class="num-dot">{i + 1}</span>{item}</li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KULINER ============ -->
+  <section class="relative section-padding overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={img('koridor-kuliner')} alt="" class="w-full h-full object-cover opacity-40" loading="lazy" />
+      <div class="absolute inset-0 bg-gradient-to-r from-night via-night/85 to-night/40"></div>
+    </div>
+    <div class="relative container-main">
+      <div class="max-w-3xl">
+        <span class="eyebrow reveal">Kuliner</span>
+        <h2 class="mt-4 text-3xl md:text-5xl reveal reveal-delay-1">Rasa global, <span class="glow-text">wajah Osing</span></h2>
+        <p class="mt-6 text-white/80 md:text-lg reveal reveal-delay-2">
+          Koridor kuliner 12 unit dengan fasad arsitektur Osing modern dan area makan komunal di bawah lampu-lampu taman.
+          Dari masakan Nusantara, Thai, Western, sampai kopi premium. Cocok untuk makan siang keluarga maupun nongkrong malam.
+        </p>
+        <a href="/kemitraan" class="btn-ghost mt-8 reveal reveal-delay-3">Punya usaha kuliner? Jadi tenant →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EVENT (ringkas) ============ -->
+  <section class="section-padding bg-night-2">
+    <div class="container-main grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="rounded-3xl overflow-hidden border border-white/10 reveal">
+        <img src={img('venue-garden')} alt="Ilustrasi area Garden Party di Banyuwangi Nature Adventure" class="w-full h-full object-cover" loading="lazy" width="546" height="308" />
+      </div>
+      <div>
+        <span class="eyebrow reveal">Event & Venue</span>
+        <h2 class="mt-4 text-3xl md:text-5xl reveal reveal-delay-1">Rayakan momenmu di bawah cahaya</h2>
+        <p class="mt-6 text-white/75 reveal reveal-delay-2">
+          Area Garden Party BNA siap untuk berbagai acara, dengan taman cahaya sebagai latar dan tenant kuliner kami sebagai katering.
+        </p>
+        <ul class="mt-6 flex flex-wrap gap-2 reveal reveal-delay-3">
+          {eventTypes.map((t) => <li class="px-4 py-1.5 rounded-full text-sm bg-white/5 border border-white/10 text-white/80">{t}</li>)}
+        </ul>
+        <a href="/event" class="btn-primary mt-8">Lihat Detail Venue</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INFO: LOKASI & JAM ============ -->
+  <section id="info" class="section-padding scroll-mt-20">
+    <div class="container-main grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div>
+        <span class="eyebrow reveal">Info Kunjungan</span>
+        <h2 class="mt-4 text-3xl md:text-5xl reveal reveal-delay-1">Di jantung Genteng</h2>
+        <dl class="mt-8 grid grid-cols-2 gap-4 reveal reveal-delay-2">
+          {hours.map((h) => (
+            <div class="card p-5">
+              <dt class="text-[11px] uppercase tracking-[0.2em] text-glow/80">{h.label}</dt>
+              <dd class="mt-1 text-xl font-semibold text-white">{h.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <ul class="mt-8 grid gap-4 text-white/75 reveal reveal-delay-2">
+          <li><strong class="text-white">Kecamatan Genteng</strong>, pusat kegiatan kedua terbesar di Banyuwangi, mudah dijangkau dari Sempu, Srono, Gambiran, hingga Glenmore.</li>
+          <li><strong class="text-white">±10 menit</strong> dari Stasiun Kalisetail (Blambangan Ekspres, Wijayakusuma, Mutiara Timur).</li>
+          <li>Parkir terintegrasi untuk mobil dan bus rombongan. <a href={waLinks.rombongan} target="_blank" rel="noopener noreferrer" data-wa="rombongan" class="text-glow underline underline-offset-4">Tanya paket rombongan</a></li>
+        </ul>
+        <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer" class="btn-ghost mt-8 reveal reveal-delay-3">Buka di Google Maps</a>
+      </div>
+      <div class="rounded-3xl overflow-hidden border border-white/10 reveal reveal-delay-1">
+        <img src={img('gerbang')} alt="Ilustrasi gerbang masuk Banyuwangi Nature Adventure" class="w-full" loading="lazy" width="885" height="590" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section-padding bg-night-2">
+    <div class="container-main max-w-3xl">
+      <h2 class="text-3xl md:text-4xl text-center reveal">Pertanyaan yang sering diajukan</h2>
+      <div class="mt-10 divide-y divide-white/10 border-y border-white/10">
+        {faqs.map((f) => (
+          <details class="group py-5">
+            <summary class="flex justify-between items-center gap-6 cursor-pointer list-none text-white font-medium">
+              {f.q}
+              <span class="text-glow text-xl transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-white/70 text-sm md:text-base">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="relative section-padding overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={img('taman-bunga')} alt="" class="w-full h-full object-cover opacity-30" loading="lazy" />
+      <div class="absolute inset-0 bg-night/70"></div>
+    </div>
+    <div class="relative container-main max-w-3xl text-center">
+      <h2 class="text-3xl md:text-5xl reveal">Jadi yang pertama merasakan<br /><span class="glow-text">Banyuwangi Nature Adventure</span></h2>
+      <p class="mt-6 text-white/75 reveal reveal-delay-1">Kami kabari tanggal soft opening, harga tiket, dan promo pembukaan lewat WhatsApp.</p>
+      <a href={waLinks.info} target="_blank" rel="noopener noreferrer" data-wa="cta-akhir" class="btn-primary mt-10">Kabari Saya via WhatsApp</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .session-tab {
+    padding: 0.7rem 1.3rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    color: rgb(255 255 255 / 0.7);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .session-tab[aria-selected='true'] {
+    color: var(--color-night);
+    background: linear-gradient(90deg, var(--color-glow), var(--color-violet));
+    font-weight: 600;
+  }
+  @media (max-width: 400px) {
+    .session-tab { padding: 0.6rem 0.9rem; font-size: 0.78rem; }
+  }
+</style>
+
+<script>
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-session-tab]'));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-session-panel]'));
+  const select = (key: string) => {
+    tabs.forEach((t) => {
+      const on = t.dataset.sessionTab === key;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach((p) => (p.hidden = p.dataset.sessionPanel !== key));
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t.dataset.sessionTab!));
+    t.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      next.focus();
+      select(next.dataset.sessionTab!);
+    });
+  });
+  // Setelah pukul 16.30, tampilkan sesi malam lebih dulu
+  const now = new Date();
+  if (now.getHours() * 60 + now.getMinutes() >= 16 * 60 + 30) select('malam');
+</script>
