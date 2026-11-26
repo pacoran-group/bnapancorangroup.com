@@ -34,7 +34,10 @@ export const waLinks = {
   rombongan: wa('Halo, saya ingin menanyakan paket kunjungan rombongan ke Banyuwangi Nature Adventure.'),
 };
 
-export const img = (name: string) => `/images/${name}.webp`;
+// Penanda versi yang berganti setiap build, agar browser selalu mengambil gambar terbaru
+// setelah deploy (meski nama file gambarnya sama).
+const assetVersion = Date.now().toString(36);
+export const img = (name: string) => `/images/${name}.webp?v=${assetVersion}`;
 
 export const hours = [
   { label: 'Sesi Siang', value: '10.00 – 16.00' },
