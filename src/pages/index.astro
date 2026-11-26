@@ -7,8 +7,8 @@ import {
 } from '../data/bna';
 
 const released = releasedEpisodes();
-// Tampilkan 3 episode terbaru yang sudah tayang; bila belum ada, 3 episode pertama (Segera Tayang)
-const lumiPreview = released.length ? released.slice(-3).reverse() : lumiEpisodes.slice(0, 3);
+// Episode yang sudah tayang (terbaru dulu), lalu diisi episode berikutnya hingga 3 kartu
+const lumiPreview = [...released.slice().reverse(), ...lumiEpisodes.filter((e) => !released.includes(e))].slice(0, 3);
 
 const jsonLd = [
   {

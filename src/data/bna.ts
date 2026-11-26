@@ -170,14 +170,14 @@ export const lumi = {
   intro:
     'Lumi adalah maskot Banyuwangi Nature Adventure. Ikuti petualangannya dalam serial film pendek 12 episode yang tayang di YouTube.',
   // Link channel / playlist YouTube resmi (kosongkan bila belum ada)
-  channelUrl: '',
+  channelUrl: 'https://www.youtube.com/@BanyuwangiNatureAdventure',
   playlistUrl: '',
 };
 
 export type Episode = { no: number; title: string; synopsis: string; youtube: string };
 
 export const lumiEpisodes: Episode[] = [
-  { no: 1, title: 'Episode 1', synopsis: '', youtube: '' },
+  { no: 1, title: 'Episode 1', synopsis: '', youtube: 'https://youtu.be/0mC2qfhavI8' },
   { no: 2, title: 'Episode 2', synopsis: '', youtube: '' },
   { no: 3, title: 'Episode 3', synopsis: '', youtube: '' },
   { no: 4, title: 'Episode 4', synopsis: '', youtube: '' },
