@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import EpisodeCard from '../components/EpisodeCard.astro';
 import {
   site, waLinks, img, facts, hours, zonesDay, zonesNight, mapLegend, eventTypes, faqs,
+  lumi, lumiEpisodes, releasedEpisodes,
 } from '../data/bna';
+
+const released = releasedEpisodes();
+// Tampilkan 3 episode terbaru yang sudah tayang; bila belum ada, 3 episode pertama (Segera Tayang)
+const lumiPreview = released.length ? released.slice(-3).reverse() : lumiEpisodes.slice(0, 3);
 
 const jsonLd = [
   {
@@ -229,6 +235,23 @@ const jsonLd = [
     </div>
   </section>
 
+  <!-- ============ SERIAL LUMI ============ -->
+  <section id="lumi" class="section-padding scroll-mt-20 overflow-hidden">
+    <div class="container-main">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="max-w-2xl">
+          <span class="eyebrow reveal">Serial YouTube</span>
+          <h2 class="mt-4 text-3xl md:text-5xl reveal reveal-delay-1">Petualangan <span class="glow-text">{lumi.name}</span></h2>
+          <p class="mt-4 text-white/75 reveal reveal-delay-2">{lumi.intro}</p>
+        </div>
+        <a href="/lumi" class="btn-ghost shrink-0 reveal">Semua {lumiEpisodes.length} Episode →</a>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {lumiPreview.map((ep) => <EpisodeCard episode={ep} />)}
+      </div>
+    </div>
+  </section>
+
   <!-- ============ INFO: LOKASI & JAM ============ -->
   <section id="info" class="section-padding scroll-mt-20">
     <div class="container-main grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -251,7 +274,7 @@ const jsonLd = [
         <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer" class="btn-ghost mt-8 reveal reveal-delay-3">Buka di Google Maps</a>
       </div>
       <div class="rounded-3xl overflow-hidden border border-white/10 reveal reveal-delay-1">
-        <img src={img('gerbang')} alt="Ilustrasi gerbang masuk Banyuwangi Nature Adventure" class="w-full" loading="lazy" width="885" height="590" />
+        <img src={img('gerbang')} alt="Ilustrasi gerbang masuk Banyuwangi Nature Adventure bertuliskan Welcome to Banyuwangi, The Sunrise of Java" class="w-full" loading="lazy" width="1600" height="893" />
       </div>
     </div>
   </section>

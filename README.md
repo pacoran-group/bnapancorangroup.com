@@ -12,6 +12,7 @@ Dibangun dengan Astro (situs statis) + Tailwind CSS, dan di-deploy otomatis ke J
 | `/` | `src/pages/index.astro` | Beranda: hero, zona Siang/Malam, Kawah Ijen, peta, kuliner, event, info, FAQ |
 | `/kemitraan` | `src/pages/kemitraan.astro` | Untuk calon tenant F&B |
 | `/event` | `src/pages/event.astro` | Sewa venue / Garden Party |
+| `/lumi` | `src/pages/lumi.astro` | Serial YouTube 12 episode maskot Lumi |
 | `/404` | `src/pages/404.astro` | Halaman tidak ditemukan |
 
 ## Mengubah konten
@@ -21,6 +22,18 @@ format tenant, jadwal, dan link Google Maps. Ubah di sana, semua halaman ikut be
 
 Gambar ada di `public/images/` (format WebP). Saat ini seluruhnya **ilustrasi konsep** dari proposal;
 ganti dengan foto asli begitu tersedia, dengan nama file yang sama.
+
+### Menambahkan episode Lumi
+
+Di `src/data/bna.ts`, cari `lumiEpisodes` lalu tempel link YouTube ke kolom `youtube` episode yang baru tayang
+(boleh `youtu.be/...`, `youtube.com/watch?v=...`, atau `youtube.com/shorts/...`). Judul dan sinopsis juga bisa diisi.
+
+```ts
+{ no: 1, title: 'Judul Episode 1', synopsis: 'Ringkasan singkat…', youtube: 'https://youtu.be/XXXXXXXXXXX' },
+```
+
+Episode yang link-nya masih kosong otomatis tampil "Segera Tayang". Link channel/playlist diisi di `lumi.channelUrl`
+atau `lumi.playlistUrl` agar tombol "Ikuti di YouTube" muncul.
 
 ## Menjalankan di komputer
 

@@ -155,6 +155,48 @@ export const marketStats = [
   { value: '3,5–5 jam', label: 'Proyeksi lama kunjungan', source: 'Comparative Tourism Study 2024' },
 ];
 
+/* ============================================
+   SERIAL "LUMI" — film pendek 12 episode di YouTube
+   Cara mengisi: tempel link YouTube episode ke `youtube`
+   (format apa pun: youtu.be/..., youtube.com/watch?v=..., atau /shorts/...).
+   Episode dengan `youtube` kosong otomatis tampil "Segera Tayang".
+   ============================================ */
+
+export const lumi = {
+  name: 'Lumi',
+  intro:
+    'Lumi adalah maskot Banyuwangi Nature Adventure. Ikuti petualangannya dalam serial film pendek 12 episode yang tayang di YouTube.',
+  // Link channel / playlist YouTube resmi (kosongkan bila belum ada)
+  channelUrl: '',
+  playlistUrl: '',
+};
+
+export type Episode = { no: number; title: string; synopsis: string; youtube: string };
+
+export const lumiEpisodes: Episode[] = [
+  { no: 1, title: 'Episode 1', synopsis: '', youtube: '' },
+  { no: 2, title: 'Episode 2', synopsis: '', youtube: '' },
+  { no: 3, title: 'Episode 3', synopsis: '', youtube: '' },
+  { no: 4, title: 'Episode 4', synopsis: '', youtube: '' },
+  { no: 5, title: 'Episode 5', synopsis: '', youtube: '' },
+  { no: 6, title: 'Episode 6', synopsis: '', youtube: '' },
+  { no: 7, title: 'Episode 7', synopsis: '', youtube: '' },
+  { no: 8, title: 'Episode 8', synopsis: '', youtube: '' },
+  { no: 9, title: 'Episode 9', synopsis: '', youtube: '' },
+  { no: 10, title: 'Episode 10', synopsis: '', youtube: '' },
+  { no: 11, title: 'Episode 11', synopsis: '', youtube: '' },
+  { no: 12, title: 'Episode 12', synopsis: '', youtube: '' },
+];
+
+/** Ambil ID video dari berbagai format link YouTube. */
+export const youtubeId = (url: string): string | null => {
+  if (!url) return null;
+  const m = url.match(/(?:youtu\.be\/|v=|\/shorts\/|\/embed\/|\/live\/)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : /^[A-Za-z0-9_-]{11}$/.test(url.trim()) ? url.trim() : null;
+};
+
+export const releasedEpisodes = () => lumiEpisodes.filter((e) => youtubeId(e.youtube));
+
 export const faqs = [
   {
     q: 'Kapan Banyuwangi Nature Adventure buka?',
