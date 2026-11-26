@@ -38,7 +38,9 @@ const nav = [
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#060918" />
 
     <meta property="og:type" content="website" />
@@ -75,8 +77,8 @@ const nav = [
     <header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-500">
       <div class="container-main flex items-center justify-between h-20">
         <a href="/" class="flex items-center gap-3 text-white" aria-label={`${site.name}, beranda`}>
-          <span class="w-10 h-10 rounded-full grid place-items-center font-extrabold text-night text-sm bg-gradient-to-br from-glow to-violet shadow-[0_0_20px_rgb(103_232_249/0.5)]">BNA</span>
-          <span class="hidden sm:flex flex-col leading-tight">
+          <img src="/images/logo-bna-white.webp" alt="Logo BNA" class="h-11 w-auto" width="410" height="240" />
+          <span class="hidden sm:flex flex-col leading-tight border-l border-white/20 pl-3">
             <span class="text-sm font-bold">Banyuwangi Nature Adventure</span>
             <span class="text-[10px] uppercase tracking-[0.2em] text-white/60">by Pancoran Group</span>
           </span>
@@ -127,7 +129,8 @@ const nav = [
     <footer class="border-t border-white/10 bg-night-2">
       <div class="container-main py-16 grid gap-12 md:grid-cols-4">
         <div class="md:col-span-2">
-          <p class="text-xl font-bold text-white">{site.name}</p>
+          <img src="/images/logo-bna-white.webp" alt="Logo BNA" class="h-16 w-auto" width="410" height="240" loading="lazy" />
+          <p class="mt-4 text-xl font-bold text-white">{site.name}</p>
           <p class="mt-2 text-white/60 max-w-md">{site.tagline}. Hybrid Eco-Lifestyle Park di {site.location}.</p>
           <a href={site.parent.url} class="inline-flex items-center gap-3 mt-6 opacity-80 hover:opacity-100 transition-opacity">
             <span class="text-xs uppercase tracking-[0.2em] text-white/60">Bagian dari</span>
