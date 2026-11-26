@@ -61,7 +61,7 @@ export const zonesDay: Zone[] = [
   },
   {
     title: 'Kawah Ijen Blue Fire Waterpark',
-    desc: '"The Mystic Crater Adventure": perosotan air yang melingkari gunung bertema Kawah Ijen, lengkap dengan kolam anak dan sewa ban.',
+    desc: '"The Mystic Crater Adventure": perosotan air yang melingkari gunung bertema Kawah Ijen, lengkap dengan kolam anak, kolam dewasa, dan kolam arus.',
     image: img('kawah-ijen-waterpark'),
     contain: true,
   },
@@ -94,24 +94,30 @@ export const zonesNight: Zone[] = [
     image: img('jembatan-cahaya'),
   },
   {
-    title: 'Wahana Swing Swinger',
-    desc: 'Wahana ayun berputar di tengah taman, dikelilingi Taman Bunga dan Taman Kembang Api Menyala.',
+    title: 'Wave Swinger',
+    desc: 'Wahana ayun berputar di tengah taman, dikelilingi taman bunga menyala dan dekat area api unggun.',
     image: img('suasana-malam'),
   },
 ];
 
+// Keterangan peta 3D (public/images/peta-3d.webp), dikelompokkan sesuai legenda di peta
 export const mapLegend = [
-  'Area Waterpark & Kolam Anak',
-  'Taman Pohon Menyala',
-  'Taman Kembang Api Menyala',
-  'Taman Ubur-Ubur Menyala',
-  'Taman Rumput Menyala',
-  'Taman Hewan Menyala',
-  'Taman Bunga Menyala',
-  'Wahana Swing Swinger',
-  'Area Playland (indoor)',
-  'Area Foodcourt (12 unit)',
-  'Garden Party',
+  {
+    group: 'Area Utama',
+    items: ['Entrance', 'Water Park', 'Playground (indoor ber-AC)', 'Wave Swinger', 'Garden Party', 'Food Court'],
+  },
+  {
+    group: 'Kolam & Wahana Air',
+    items: ['Kolam Anak', 'Kolam Dewasa', 'Kolam Arus', 'Waterslide'],
+  },
+  {
+    group: 'Taman Cahaya',
+    items: ['Taman Bunga', 'Taman Hewan', 'Taman Ubur-Ubur', 'Taman Rumput', 'Taman Pohon', 'Api Unggun'],
+  },
+  {
+    group: 'Fasilitas',
+    items: ['Mushola', 'Toilet', 'Parkir (termasuk difabel)', 'Emergency Exit'],
+  },
 ];
 
 export const eventTypes = ['Pernikahan', 'Gathering Kantor', 'Ulang Tahun', 'Kegiatan Sekolah', 'Komunitas'];
